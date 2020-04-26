@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iUAV - login</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+<link rel="stylesheet" href="js/vendor/jgrowl/css/jquery.jgrowl.min.css">
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<!--[if IE]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<style>
+	input::-webkit-input-placeholder{
+		color: #B0B0B0;
+	}
+	input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+		color: #B0B0B0;
+	}
+	input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+		color: #B0B0B0;
+	}
+	input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+		color: #B0B0B0;
+	}
+</style>
+</head>
+<body>
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<div class="logo_box">
+						<h3><font size="8">iUAV Login</font></h3>
+						<br>
+						<form action="#" name="f" method="post">
+
+							<!-- INPUT - Account Name -->
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id="ID" name="logname" class="text" style="color: #545454 !important" type="text" placeholder="Please enter your account">
+							</div>
+
+							<!-- INPUT - Password -->
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input id="PASSWORD" name="logpass" class="text" style="color: #545454 !important; position:absolute; z-index:100;"value="" type="password" placeholder="Please enter your password">
+							</div>
+
+							<!-- <div id="LOGIN" class="mb2"><a class="act-but submit" href="javascript:;" onclick="login()" style="color: #FFFFFF">LOG IN</a></div> -->
+
+							<!-- TEMPORARY -->
+							<div id="LOGIN" class="mb2"><a class="act-but submit" onclick="login()" style="color: #FFFFFF">LOG IN</a></div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="js/TweenLite.min.js"></script>
+		<script src="js/EasePack.min.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/rAF.js"></script>
+		<script src="js/demo-1.js"></script>
+		<script src="js/vendor/jgrowl/jquery.jgrowl.min.js"></script>
+		<script src="js/Longin.js"></script>
+		<div style="text-align:center;">
+</div>
+	</body>
+</html>

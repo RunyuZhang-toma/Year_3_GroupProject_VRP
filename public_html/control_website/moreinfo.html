@@ -1,0 +1,533 @@
+<!-- 
+
+Filename: moreinfo.html
+
+This front-end file is prepared by Team 2018-10 of COMP 2043.GRP. University of Nottingham, Ningbo, China.
+The supervisor of Team-10 is prof. Ruibin BAI.
+The developer group consists six people, Runyu ZHANG, Qichen ZHANG, Yinglun LI, Huixing ZHANG, Zeyu ZHANG, and Yundan WANG.
+The project is No.14 UAV Patrol System.
+
+REFERENCE:
+
+[1] Titile: Free Templates of Websites 
+    Author: CSSMoban (Templates Home)
+    Date: 2018
+	 Code Version: 1.0
+    License: MIT
+	 Availability: http://www.cssmoban.com (accessed: Mar 1, 2019)
+
+[2] Title: Websites Templates
+    Author: Bootstrap
+    Date: 2018
+    Code Version: 4.0.0
+    License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    Availability: https://github.com/twbs/bootstrap (accessed: Mar 7, 2019)
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>More Info - iUAV Control System</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link rel="stylesheet" href="assets/css/ready.css">
+	<link rel="stylesheet" href="assets/css/demo.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<div class="logo-header">
+				<a href="index.html" class="logo">
+					iUAV Control System
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+			</div>
+			<nav class="navbar navbar-header navbar-expand-lg">
+				<div class="container-fluid">
+
+					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+						<div class="input-group">
+							<input type="text" placeholder="Search ..." class="form-control">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
+							</div>
+						</div>
+					</form>
+
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+<!-- MAILS -->
+						<!-- <li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-envelope"></i>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</li> -->
+
+<!-- NOTIFICIATIONS -->
+						<li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-bell"></i>
+								<span class="notification">1</span>
+							</a>
+
+							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+								<li>
+									<div class="dropdown-title">You have 1 new notification</div>
+								</li>
+								<li>
+									<div class="notif-center">
+										 <a href="#">
+											<div class="notif-img"> <img src="assets/img/restricted_logo.jpg" alt="Restricted Area Logo"> </div>
+											<div class="notif-content">
+												<span class="block">
+													Restricted Areas
+												</span>
+												<span class="time">You're under restricted flight area</span>
+											</div>
+										</a>
+									</div>
+								</li>
+								<li>
+									<a class="see-all" href="javascript:void(0);"> <strong><font color="#CDC9C9">See all notifications</font></strong> <i class="la la-angle-right"></i> </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >GRP Team-10</span> </a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<div class="user-box">
+										<div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+										<div class="u-text">
+											<h4>GRP Team-10</h4>
+											<p class="text-muted">grp.team2018.10@yahoo.com</p><a class="btn btn-rounded btn-danger btn-sm" data-toggle="modal" data-target="#viewProfile"><font color="#CDC9C9">View Profile (locked)</font></a></div>
+										</div>
+									</li>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-user"></i><font color="#CDC9C9">My Profile</font></a>
+									<!--<a class="dropdown-item" href="#"></i> My Balance</a>-->
+									<a class="dropdown-item"><i class="ti-email"></i><font color="#CDC9C9">Inbox</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-settings"></i><font color="#CDC9C9">Account Setting</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="../index.html"><i class="fa fa-power-off"></i> Logout</a>
+								</ul>
+								<!-- /.dropdown-user -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="sidebar">
+				<div class="scrollbar-inner sidebar-wrapper">
+					<div class="user">
+						<div class="photo">
+							<img src="assets/img/profile.jpg">
+						</div>
+						<div class="info">
+							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									GRP Team-10
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+								<ul class="nav">
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">My Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Edit Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Settings</font></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+<!-- Nav - Dashboard -->
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="index.html">
+								<i class="la la-dashboard"></i>
+								<p>Dashboard</p>
+								<!-- <span class="badge badge-count">5</span> -->
+							</a>
+						</li>
+<!-- Nav - Routing -->
+						<li class="nav-item">
+							<a href="routing.html">
+								<i class="la la-map"></i>
+								<p>Routing System</p>
+								<!-- <span class="badge badge-count">50</span> -->
+							</a>
+						</li>
+
+<!-- Nav - Media -->
+                  <li class="nav-item">
+                     <a href="media.html">
+                        <i class="la la-film"></i>
+                        <p>Media Library</p>
+                        <!-- <span class="badge badge-count">0</span> -->
+                     </a>
+                  </li>
+
+<!-- NAV - Guidance -->
+						<li class="nav-item">
+							<a href="guidance.html">
+								<i class="la la-graduation-cap"></i>
+								<p>Guidance</p>
+								<!-- <span class="badge badge-success">3</span> -->
+							</a>
+						</li>
+
+<!-- NAV - More Info -->
+						<li class="nav-item active">
+							<a href="moreinfo.html">
+								<i class="la la-info-circle"></i>
+								<p>More Info</p>
+							</a>
+						</li>
+
+
+<!-- Main Body -->
+
+					</ul>
+				</div>
+			</div>
+
+         <style>
+            .col-md-9 img{width:135%;height:135%;text-align:center;}
+         </style>
+
+			<div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">More Information</h4>
+
+<!-- Conten - Developer Info -->
+							<div class="row">
+								<div class="row">
+								<div class="col-md-9">
+									<div class="card">
+										<div class="card-header">
+										  <h4 class="card-title">Developers</h4>
+										  <p class="card-category">
+											<b>Devleopment Team:</b> GRP Team2018-10</p>
+										</div>
+										<div class="card-body">
+
+											<div class="col-md-9">
+	                                 <img src="assets/img/team_members.jpg">
+	                              </div>
+
+											<p><br><b>Supervisor:</b> <em>Prof.</em> Ruibin BAI<br>
+												<b>Developers:</b> Runyu ZHANG (Leader & Routing Algorithms)<br>
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Huixing REN (UAV Controls & Dji SDK)<br>
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Qichen ZHANG (UAV Controls & Dji SDK)<br>
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Yinglun LI (Front-end & UI Design)<br>
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Danyun WANG (Front-end & Map Interactions)<br>
+												<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Zeyun ZHANG (Back-end & Server)<br>
+												<b>Technical Support:</b> Dr. Josh ZHANG<br>
+												<b>Hardware Support:</b> Ningbo SENEN Science and Technology Co.,Ltd.<br>
+											</p>
+											<a href="../project_website/index.html#team" target="_blank" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-group"></i> View More Info about the Development Team</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+
+<!-- Conten - Project Info -->
+						<div class="row">
+							<div class="col-md-9">
+								<div class="card">
+									<div class="card-header">
+									  <h4 class="card-title">About the Project</h4>
+									  <p class="card-category">
+										Peoject-14 Unmanned Aerial Vehicle Patrol System</p>
+									</div>
+									<div class="card-body">
+										<p>An unmanned aerial vehicle (UAV), commonly known as a drone, is an aircraft without a human pilot aboard. UAVs are a component of an unmanned aircraft system (UAS), which include a UAV, a ground-based controller, and a system of communications between the two. The flight of UAVs may operate with various degrees of autonomy, either under remote control by a human operator or autonomously by onboard computers.
+										<br><br>
+										The team will design and implement a webpage system that can communicate and control the basic control of an aerial vehicles, including take off, landing, position control through SDK provided by the aerial vehicle provider. The planned UAV used in this project is DJI M200 onboard SDK.
+										<br><br>
+										It will be able to do machine learning based automatic object recognition module from videos taken by an UAV onboard camera, and there is a system can automatically track a single object (extra bonus) from UAV onboard video stream.</p>
+										<a href="../project_website/index.html#about" target="_blank" class="btn btn-warning btn-full text-left mt-3 mb-3"><i class="la la-clipboard"></i> View More Info about the Project</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-9">
+								<div class="card">
+									<div class="card-header">
+									  <h4 class="card-title">iUAV System Mechanism</h4>
+									  <p class="card-category">
+										How the iUAV Patrol System Works</p>
+									</div>
+									<div class="card-body">
+										<div>
+										<div class="col-md-9">
+											<img src="assets/img/client_server_relationship.jpg" align="center">
+										</div>
+										<p align="center">iUAV System Mechanism</p>
+										<p>
+										<br>
+											The major components of the system is the iUAV Web Client window, Server and Mobile App (Relay). The Mobile App are not only connected with iUAV server, but also the Dji controller to implement control operations and communications between hardware and software.
+											<br>Additionally, there is also a project website connected with the iUAV server, including all information of this project (e.g. project states, schedule, media, documents and etc).
+										</p>
+										<a href="assets/files/P14_interim_report.pdf" target="_blank" class="btn btn-success btn-full text-left mt-3 mb-3"><i class="la la-file-text"></i> View More Info in the Project Report</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						</div>
+					</div>
+
+
+<!-- Content - FLIGHT DATA -->
+<!-- 						<div class="row row-card-no-pd">
+							<div class="col-md-4">
+								<div class="card">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Flight Data</p>
+									  <h4><strong>Unavailable</strong></h4>
+									  <a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Connection</a>
+									</div>
+									<div class="card-footer">
+										<ul class="nav">
+											<li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
+											<li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="card">
+									<div class="card-body">
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight I Speed</span>
+												<span class="text-muted fw-bold"> Unavailable</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Speed</span>
+												<span class="text-muted fw-bold">Unavailable</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight I Speed</span>
+												<span class="text-muted fw-bold">80m</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Speed</span>
+												<span class="text-muted fw-bold">65m</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="card card-stats">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Battery Status</p>
+									  <div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center icon-warning"><em class="la la-battery-4"></em></div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+												  <p class="card-category">Flight I</p>
+												  <h4 class="card-title">100%</h4>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-battery-4"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">Flight II</p>
+													<h4 class="card-title">100%</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+
+<!-- Content - FLIGHT CONTROL -->
+<!--                   <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="flight_control">Flight Control</h4>
+                              <p class="card-category">Here is a subtitle for this table</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-warning">Take-Off</button>
+
+                                 <button class="btn btn-danger">Return</button>
+
+                                 <button class="btn btn-success">Change Routing Points</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Take-Photo</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Record-Video</button>
+
+                                 <button class="btn btn-default">Refresh</button>
+
+                                 <button class="btn btn-link">Link</button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div> -->
+
+<!-- Content - EMERGENCY CONTROL -->
+<!--                   <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="emergency_control">Emergency Contorl</h4>
+                              <p class="card-category">The emergency control is disabled for safety consideration.<br>Please control the UAV through Dji remote controller in emergency.</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-default" disabled="disabled">Landing</button>
+
+                                 <button class="btn btn-warning" disabled="disabled">Alarm</button>
+
+                                 <button class="btn btn-danger" disabled="disabled">Power-Off</button>
+
+                                 <button class="btn btn-success">Manual</button>
+
+                                 <button class="btn btn-link" disabled>Manually Control Instructions</button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+					</div>
+				</div> -->
+
+
+<!-- FOOTER -->
+				<footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="project_website/index.html">
+										Project Website
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										Help
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#license/#free-item">
+										Licenses
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright ml-auto">
+							Copyright <i class="la la-copyright"></i> 2018-2019 GRP Team2018-10. All rights reserved.</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+   <div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-unlock"></i> My Profile</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>Username:</b> GRP Team10
+               <br><b>E-mail:</b> grp.team2018.10@yahoo.com</p>
+               <p>The function of profile change is <b>locked</b> in demonstration mode.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script src="assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="assets/js/plugin/maps/initAMap.js"></script>
+<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="assets/js/ready.min.js"></script>
+<script src="assets/js/demo.js"></script>
+</html>

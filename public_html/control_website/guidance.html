@@ -1,0 +1,620 @@
+<!-- 
+
+Filename: guidance.html
+
+This front-end file is prepared by Team 2018-10 of COMP 2043.GRP. University of Nottingham, Ningbo, China.
+The supervisor of Team-10 is prof. Ruibin BAI.
+The developer group consists six people, Runyu ZHANG, Qichen ZHANG, Yinglun LI, Huixing ZHANG, Zeyu ZHANG, and Yundan WANG.
+The project is No.14 UAV Patrol System.
+
+REFERENCE:
+
+[1] Titile: Free Templates of Websites 
+    Author: CSSMoban (Templates Home)
+    Date: 2018
+	 Code Version: 1.0
+    License: MIT
+	 Availability: http://www.cssmoban.com (accessed: Mar 1, 2019)
+
+[2] Title: Websites Templates
+    Author: Bootstrap
+    Date: 2018
+    Code Version: 4.0.0
+    License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    Availability: https://github.com/twbs/bootstrap (accessed: Mar 7, 2019)
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Guidance - iUAV Control System</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link rel="stylesheet" href="assets/css/ready.css">
+	<link rel="stylesheet" href="assets/css/demo.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<div class="logo-header">
+				<a href="index.html" class="logo">
+					iUAV Control System
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+			</div>
+			<nav class="navbar navbar-header navbar-expand-lg">
+				<div class="container-fluid">
+
+					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+						<div class="input-group">
+							<input type="text" placeholder="Search ..." class="form-control">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
+							</div>
+						</div>
+					</form>
+
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+<!-- MAILS -->
+						<!-- <li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-envelope"></i>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</li> -->
+
+<!-- NOTIFICIATIONS -->
+						<li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-bell"></i>
+								<span class="notification">1</span>
+							</a>
+
+							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+								<li>
+									<div class="dropdown-title">You have 1 new notification</div>
+								</li>
+								<li>
+									<div class="notif-center">
+										 <a href="#">
+											<div class="notif-img"> <img src="assets/img/restricted_logo.jpg" alt="Restricted Area Logo"> </div>
+											<div class="notif-content">
+												<span class="block">
+													Restricted Areas
+												</span>
+												<span class="time">You're under restricted flight area</span>
+											</div>
+										</a>
+									</div>
+								</li>
+								<li>
+									<a class="see-all" href="javascript:void(0);"> <strong><font color="#CDC9C9">See all notifications</font></strong> <i class="la la-angle-right"></i> </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >GRP Team-10</span> </a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<div class="user-box">
+										<div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+										<div class="u-text">
+                                 <h4>GRP Team-10</h4>
+                                 <p class="text-muted">grp.team2018.10@yahoo.com</p><a class="btn btn-rounded btn-danger btn-sm" data-toggle="modal" data-target="#viewProfile"><font color="#CDC9C9">View Profile (locked)</font></a></div>
+										</div>
+									</li>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-user"></i><font color="#CDC9C9">My Profile</font></a>
+									<!--<a class="dropdown-item"></i> My Balance</a>-->
+									<a class="dropdown-item"><i class="ti-email"></i><font color="#CDC9C9">Inbox</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-settings"></i><font color="#CDC9C9">Account Setting</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="../index.html"><i class="fa fa-power-off"></i> Logout</a>
+								</ul>
+								<!-- /.dropdown-user -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="sidebar">
+				<div class="scrollbar-inner sidebar-wrapper">
+					<div class="user">
+						<div class="photo">
+							<img src="assets/img/profile.jpg">
+						</div>
+						<div class="info">
+							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									GRP Team-10
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+								<ul class="nav">
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">My Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Edit Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Settings</font></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+<!-- Nav - Dashboard -->
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="index.html">
+								<i class="la la-dashboard"></i>
+								<p>Dashboard</p>
+								<!-- <span class="badge badge-count">5</span> -->
+							</a>
+						</li>
+<!-- Nav - Routing -->
+						<li class="nav-item">
+							<a href="routing.html">
+								<i class="la la-map"></i>
+								<p>Routing System</p>
+								<!-- <span class="badge badge-count">50</span> -->
+							</a>
+						</li>
+
+<!-- Nav - Media -->
+                  <li class="nav-item">
+                     <a href="media.html">
+                        <i class="la la-film"></i>
+                        <p>Media Library</p>
+                        <!-- <span class="badge badge-count">0</span> -->
+                     </a>
+                  </li>
+
+<!-- NAV - Guidance -->
+						<li class="nav-item active">
+							<a href="guidance.html">
+								<i class="la la-graduation-cap"></i>
+								<p>Guidance</p>
+								<!-- <span class="badge badge-success">3</span> -->
+							</a>
+						</li>
+
+<!-- NAV - More Info -->
+						<li class="nav-item">
+							<a href="moreinfo.html">
+								<i class="la la-info-circle"></i>
+								<p>More Info</p>
+							</a>
+						</li>
+
+
+<!-- Main Body -->
+
+					</ul>
+				</div>
+			</div>
+
+         <style>
+            .col-md-9 img{width:135%;height:135%;}
+         </style>
+
+			<div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">Guidance</h4>
+
+<!-- Conten - FLight Tips -->
+
+							<div class="row">
+                        <div class="row">
+								<div class="col-md-9">
+									<div class="card">
+										<div class="card-header">
+										  <h4 class="card-title">Flight Tips</h4>
+										  <p class="card-category">Read carefully before you operate the UAV</p>
+										</div>
+										<div class="card-body">
+                                 <div class="col-md-9">
+                                    <br>
+                                    <img src="assets/img/flight_tips.jpg">
+                                 </div>
+											<!-- <p>1. Always follow local regulations.<br><br>
+                                    2. Always fly in open areas and keep your drone within line of sight. For safety reasons, you should never fly above people, animals, or moving vehicles.<br><br>
+                                    3. Never fly near or interfere with manned aircraft operations.<br><br>
+                                    4. Never fly under the influence of drugs or alcohol.<br><br>
+                                    5. Keep your hands on the control sticks to maintain control throughout flight.<br><br>
+                                    6. Take off with strong GPS signal to set a Home Point and ensure positioning stability.<br><br>
+                                    7. Check your drone for damage and fully charge your equipment before each flight.<br><br>
+                                    8. Practice flying in the Flight Simulator.<br>
+											</p> -->
+											<a href="https://www.dji.com/uk/flysafe?site=brandsite&from=nav" target="_blank" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-list-alt"></i> View More Info about the Flight Safety Guidance on Dji.com</a>
+										</div>
+									</div>
+								</div>
+                        </div>
+							</div>
+						</div>
+
+<!-- Conten - GEO Info -->
+
+						<div class="row">
+							<div class="col-md-9">
+								<div class="card">
+									<div class="card-header">
+									  <h4 class="card-title">GEO System</h4>
+									  <p class="card-category">
+										Geospatial Environment Online for Flight Safety</p>
+									</div>
+									<div class="card-body">
+										<p>DJI's Geospatial Environment Online (GEO) is a best-in-class geospatial information system providing DJI users with up-to-date guidance on areas where flight may be limited due to safety concerns or regulations. This provides DJI users with information that will help them make smart decisions about where and when to fly.<br></p>
+                              <div class="col-md-9 ">
+                                 <img src="assets/img/restricted_zone.jpg">
+                              </div>
+                              <p><br>* Restricted Zones. <font color="#969696">In these Zones, which appear red the DJI GO app, users will be prompted with a warning and flight is prevented. If you believe you have the authorization to operate in a Restricted Zone, please contact flysafe@dji.com or Online Unlocking.</font></p>
+										<a href="https://www.dji.com/uk/flysafe/geo-map" target="_blank" class="btn btn-danger btn-full text-left mt-3 mb-3"><i class="la la-globe"></i> View GEO Zone Map </a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+<!-- Maintance Guide -->
+
+                  <div class="row">
+                  <div class="col-md-5">
+                        <div class="card">
+                           <div class="card-header">
+                             <h4 class="card-title">Pre-Flight Checklist</h4>
+                             <p class="card-category">
+                              Check the UAV status carefully according the list</p>
+                           </div>
+                           <div class="card-body">
+                              <div>
+                                 <p>To ensure flight safety and optimal performance, performing comprehensive and regular maintenance is recommended. This manual is intended to help you maintain their aircraft as well as possible and maximize reliability.<br><br>
+                                    1. Check the motors to confirm that they are rotating smoothly.<br>
+                                    2. Check the propellers to confirm that they have not come loose.<br>
+                                    3. Check the arm connectors to confirm that they are mounted firmly.<br>
+                                    4. Ensure that the gimbal is rotating smoothly.<br>
+                                    5. Ensure that the landing gears are mounted firmly and check the pins to confirm that they are inserted fully and tightly.<br>
+                                    6. Ensure that the SD card cover and the rear cover are closed tightly.<br>
+                                    7. When mounting an upward gimbal, ensure the gimbal cables are tied properly to avoid affecting the propellers.<br>
+                                    8. An external GPS module is required when the upward gimbal is used. Ensure the GPS cable is connected to the rear port and the cable is tied properly.<br>
+                                 </p>
+                              </div>
+                              <a href="assets/files/maintenance_guide.pdf" target="_blank" class="btn btn-warning btn-full text-left mt-3 mb-3"><i class="la la-wrench"></i> View More in the Maintenance Guide</a>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="col-md-4">
+                        <div class="card">
+                           <div class="card-header">
+                             <h4 class="card-title">Post-Flight Checklist II</h4>
+                             <p class="card-category">
+                              Check Below Parts to Avoid Damage from Water Intrusion</p>
+                           </div>
+                           <div class="card-body">
+                              <div>
+                                 <p>
+                                    1. Check the motors to confirm that they are rotating smoothly.<br>
+                                    2. Check the propellers to confirm that they have not come loose.<br>
+                                    3. Check the arm connectors to confirm that they are mounted firmly.<br>
+                                    4. Ensure that the gimbal is rotating smoothly.<br>
+                                    5. Ensure that the landing gears are mounted firmly and check the pins to confirm that they are inserted fully and tightly.<br>
+                                    6. Ensure that the SD card cover and the rear cover are closed tightly.<br>
+                                    7. When mounting an upward gimbal, ensure the gimbal cables are tied properly to avoid affecting the propellers.<br>
+                                    8. An external GPS module is required when the upward gimbal is used. Ensure the GPS cable is connected to the rear port and the cable is tied properly.<br>
+                                 </p>
+                              </div>
+                              <a href="assets/files/maintenance_guide.pdf" target="_blank" class="btn btn-warning btn-full text-left mt-3 mb-3"><i class="la la-wrench"></i> View More in the Maintenance Guide</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="row">
+                  <div class="col-md-5">
+                        <div class="card">
+                           <div class="card-header">
+                             <h4 class="card-title">Post-Flight Checklist I</h4>
+                             <p class="card-category">
+                               Checking for Worn and Loose Parts</p>
+                           </div>
+                           <div class="card-body">
+                              <div>
+                                 <p>
+                                    1. Check that the gimbal protection cable is properly affixed to the gimbal frame. Replace it with a 0.5mm fishing line if it is damaged.<br>
+                                    2. Check that the landing gear lock screw is tightened properly, and ensure that the landing gear firmly locks when connected to the drone.<br>
+                                    3. Check that the battery release button is working normally, and the battery can be mounted firmly.<br>
+                                    4. Check the propeller base screws are tightened. Ensure the spring elasticity is good and no foreign objects are stuck in the spring.<br>
+                                    5. Ensure that the frame arm connectors are rotating smoothly.<br>
+                                    6. Keep the upward infrared sensor lens clean and avoid wear and tear.<br>
+                                    7. Check the following parts for signs of wearing: propellers, landing gears and motors.
+                                    If these parts seem worn or damaged, please contact your reseller to schedule parts
+                                    replacements.<br>
+                                    8. Landing gears: Check the drawn line on the landing gear when mounted to ensure
+                                    it has been installed. To determine whether the landing gear is properly mounted, firmly pull out the landing gear. If the attempt fails, this indicates it has been properly mounted.<br>
+                                    9. Keep the vision system camera lenses clean and avoid scratching them.<br>
+                                    10. Check the battery button is functionin gnormally. DO NOT press the button with sharp objects.<br>
+                                    11. Check the battery light water proof covers and makesure the covers have no signs of coming off.<br>
+                                    12. ChecktheexternalGPScableandconnectortoavoiddamage.<br>
+                                    13. Check the gimbal dampeners to avoid aging, cracking, orleaking.<br>
+                                 </p>
+                              </div>
+                              <a href="assets/files/maintenance_guide.pdf" target="_blank" class="btn btn-warning btn-full text-left mt-3 mb-3"><i class="la la-wrench"></i> View More in the Maintenance Guide</a>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="col-md-4">
+                        <div class="card">
+                           <div class="card-header">
+                             <h4 class="card-title">Post-Flight Checklist III</h4>
+                             <p class="card-category">
+                              Check Below Parts to Avoid Damage from Sand Intrusion</p>
+                           </div>
+                           <div class="card-body">
+                              <div>
+                                 <p>
+                                    1. Aircraft arms: In cases where small objects like sand become lodged in the connector or arm, use a compressed air duster to remove these objects.<br>
+                                    2. FPV camera: Check that the camera rotates smoothly along each axis. The camera will judder if objects are lodged inside.<br>
+                                    3. Motors: Detach the propellers and start the motors. Listen carefully to see if there is any abnormal noise, please replace the motors.<br>
+                                    4. Speaker port: keep it clean.<br>
+                                 </p>
+                              </div>
+                              <a href="assets/files/maintenance_guide.pdf" target="_blank" class="btn btn-warning btn-full text-left mt-3 mb-3"><i class="la la-wrench"></i> View More in the Maintenance Guide</a>
+                           </div>
+                        </div>
+                     </div>
+
+
+                  </div>
+
+                  </div>
+
+<!-- Content - FLIGHT DATA -->
+<!-- 						<div class="row row-card-no-pd">
+							<div class="col-md-4">
+								<div class="card">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Flight Data</p>
+									  <h4><strong>Unavailable</strong></h4>
+									  <a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Connection</a>
+									</div>
+									<div class="card-footer">
+										<ul class="nav">
+											<li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
+											<li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="card">
+									<div class="card-body">
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight I Speed</span>
+												<span class="text-muted fw-bold"> Unavailable</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Speed</span>
+												<span class="text-muted fw-bold">Unavailable</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight I Speed</span>
+												<span class="text-muted fw-bold">80m</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
+											</div>
+										</div>
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Speed</span>
+												<span class="text-muted fw-bold">65m</span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="card card-stats">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Battery Status</p>
+									  <div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center icon-warning"><em class="la la-battery-4"></em></div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+												  <p class="card-category">Flight I</p>
+												  <h4 class="card-title">100%</h4>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-battery-4"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">Flight II</p>
+													<h4 class="card-title">100%</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+
+<!-- Content - FLIGHT CONTROL -->
+<!--                   <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="flight_control">Flight Control</h4>
+                              <p class="card-category">Here is a subtitle for this table</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-warning">Take-Off</button>
+
+                                 <button class="btn btn-danger">Return</button>
+
+                                 <button class="btn btn-success">Change Routing Points</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Take-Photo</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Record-Video</button>
+
+                                 <button class="btn btn-default">Refresh</button>
+
+                                 <button class="btn btn-link">Link</button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div> -->
+
+<!-- Content - EMERGENCY CONTROL -->
+<!--                   <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="emergency_control">Emergency Contorl</h4>
+                              <p class="card-category">The emergency control is disabled for safety consideration.<br>Please control the UAV through Dji remote controller in emergency.</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-default" disabled="disabled">Landing</button>
+
+                                 <button class="btn btn-warning" disabled="disabled">Alarm</button>
+
+                                 <button class="btn btn-danger" disabled="disabled">Power-Off</button>
+
+                                 <button class="btn btn-success">Manual</button>
+
+                                 <button class="btn btn-link" disabled>Manually Control Instructions</button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+					</div>
+				</div> -->
+
+
+<!-- FOOTER -->
+				<footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="project_website/index.html">
+										Project Website
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										Help
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#license/#free-item">
+										Licenses
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright ml-auto">
+							Copyright <i class="la la-copyright"></i> 2018-2019 GRP Team2018-10. All rights reserved.</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+   <div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-unlock"></i> My Profile</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>Username:</b> GRP Team10
+               <br><b>E-mail:</b> grp.team2018.10@yahoo.com</p>
+               <p>The function of profile change is <b>locked</b> in demonstration mode.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script src="assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+<script src="assets/js/plugin/maps/initAMap.js"></script>
+<!--
+<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+-->
+<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="assets/js/ready.min.js"></script>
+<script src="assets/js/demo.js"></script>
+</html>

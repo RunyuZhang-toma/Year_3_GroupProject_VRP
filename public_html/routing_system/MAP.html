@@ -1,0 +1,404 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>Routing System</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html,body,#container{
+            height:100%;
+            width:100%;
+        }
+        .infoo {
+          padding: .75rem 1.25rem;
+          margin-bottom: 1rem;
+          border-radius: .25rem;
+          position: fixed;
+          top: 1rem;
+          background-color: white;
+          width: auto;
+          min-width: 22rem;
+          border-width: 0;
+          right: 7rem;
+          box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+    }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div class="infoo" id="text">
+    Please randomly choose some points.
+</div>
+<div class="input-card" style="width:50rem">
+      <div class="input-item" style="width:50rem">
+        <button id="clickOn" class="btn" style="margin-right:1rem;">Start choosing</button>
+        <button id="removeLastMarker" class="btn" style="margin-right:1rem;">Undo</button>
+        <button id="removeMarkersGroup" class="btn" style="margin-right:1rem;">Restart</button>
+        <button id="clickSubmit" class="btn" style="margin-right:1rem;">Submit</button>
+        <button id="clickFit" class="btn" style="margin-right:1rem;">setFitView</button>
+        <button id="clickLang" class="btn" style="margin-right:1rem;">Change Language</button>
+        <button id="clickFly" class="btn" style="margin-right:1rem;">Fly Now!</button>
+      </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.13&key=您申请的key值"></script>
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script type="text/javascript">
+    // the campus boundary
+    var pathArray = new Array([121.563107,29.795392],[121.562931,29.795409],[121.562705,29.795445],[121.56254,29.795535],[121.56245,29.795674],[121.561061,29.796851],[121.560471,29.797294],[121.559668,29.797793],[121.558918,29.798197],[121.558382,29.798436],[121.558673,29.799158],[121.559218,29.799571],[121.559459,29.799842],[121.559574,29.800334],[121.559618,29.80057],[121.559621,29.801168],[121.559569,29.801504],[121.559571,29.801729],[121.559753,29.802061],[121.560406,29.802785],[121.561448,29.803827],[121.562129,29.80358],[121.563983,29.802994],[121.56451,29.802764],[121.56491,29.802545],[121.565378,29.802209],[121.568164,29.799926],[121.563381,29.795484],[121.563246,29.79542],[121.563107,29.795392]);
+
+    //Initialize the map object and load the map
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        viewMode:'3D',
+        zoom:18,
+        lang: "zh", //en，zh_en, zh_cn
+        center: [121.562669,29.800214] //Initialize the map center point
+    });
+    map.setFitView();
+
+    // adding the toolbar plugin
+    AMap.plugin([
+        'AMap.ToolBar',
+        'AMap.Scale',
+        'AMap.MapType',
+    ], function(){
+        map.addControl(new AMap.ToolBar());
+        map.addControl(new AMap.Scale());
+        map.addControl(new AMap.MapType());
+    });
+
+    // the boundary of campus
+    var boundary = new AMap.Polyline({
+        path: pathArray,
+        borderWeight: 5, // Line width
+        strokeColor: 'red',
+        lineJoin: 'round'
+    })
+    boundary.setMap(map);
+
+    var startPoint;  // the coordinates of start point 
+    var start_marker;  // the start marker
+    connectToServer_getStart();
+    var current_marker;
+
+    var markers = []; // the array of markers
+    var path = [];   // the path of the result
+    var positions = []; // the positions for every points
+    var numFlyVehicles = 0;  // the number of flying vehicles
+    var n = 0;  // the number of points 
+    var polyline, polyline2;
+    setInterval(function() {connectToServer_getCurrent()},2000);
+
+    function connectToServer_getStart() {
+        log.success("Please wait for seconds to get the position...");
+        var xhr = new XMLHttpRequest;
+        xhr.open("get",'../server/php/send_currentpoint.php',true); 
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status ==304)) { // response complete
+                var start = JSON.parse(xhr.responseText, true);
+                // alert(xhr.responseText);
+                // if(!xhr.responseText)
+                //     log.success("Get the current position successfully!");
+                // else
+                //     log.success("Can't get the current position! Please check.");
+
+                startPoint = new AMap.LngLat(start[0], start[1]);  // the start point of vehicles
+                start_marker = new AMap.Marker({
+                        map: map,
+                        icon: 'mark_a.png',
+                        offset: new AMap.Pixel(-8, -30),
+                        position: startPoint
+                });
+                start_marker.setMap(map);
+            }
+            else if(xhr.status == 404){
+                log.success("Can't get the current position! Please check.");
+            }
+        };
+    }
+
+    // add points and show the current position of points
+    function showInfoPoint(e){ 
+        if(!checkBoundary(e.lnglat)) {
+            log.success("The position is not in the range of campus!");
+        }
+        else {
+            n = markers.length;
+            map.on('click', showInfoPoint);
+            var text = 'You choose a point at [ '+e.lnglat.getLng()+','+e.lnglat.getLat()+' ]'
+            document.querySelector("#text").innerText = text;
+            
+            var marker = new AMap.Marker({
+                map: map,
+                icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                offset: new AMap.Pixel(-8, -30),
+                cursor: 'move',
+                position: e.lnglat,
+                extData: {
+                    id: n + 1
+                }
+            });
+
+            markers.push(marker);
+            positions.push({
+                "lng": e.lnglat.getLng(),
+                "lat": e.lnglat.getLat()
+                //"id": n
+            });
+
+            map.add(marker);
+            setMap(map);
+        }    
+    }
+
+    // check if the point is in campus
+    function checkBoundary(a_lnglat) {
+        var campus = new AMap.Polygon( {
+            path:pathArray
+        });
+        map.add(campus);
+        var result = campus.contains(a_lnglat);
+        map.remove(campus);
+        return result;
+    }
+
+    // remove all points
+    function removeAllMarkers() {
+        var r = confirm("Do you want to delete all markers / routes")
+        if (r == true) {
+            for (var i = 0; i < markers.length; i++) {
+                map.remove(markers[i]);
+            }
+            positions = [];
+            path = [];
+            markers = [];
+            map.remove(polyline);
+            if(numFlyVehicles == 2)
+                map.remove(polyline2);
+            n = 0;
+        }
+    }
+
+    // remove the last chosen point
+    function removeLastMarker() {
+        map.remove(markers[markers.length-1]);
+        markers.pop();
+        positions.pop();
+        n = n-1;
+    }
+
+    // start to choose point
+    function clickOn(){
+        if(path.length != 0) {
+            var r = confirm("Route has obtained already. Abandon it? (clear all info)")
+            if (r == true) {
+                removeAllMarkers()
+            }
+        }
+        else {
+            log.success("Now you can start!");
+            map.on('click', showInfoPoint);
+        }
+    }
+
+    // submit route from server
+    function submitRoute() {
+        // check if it is valid
+        if(markers.length == 0) {
+            alert("Please select points!");
+            return;
+        }
+        map.off('click', showInfoPoint); // cannot choose points
+        // enter the number of Vehicles
+        var input = prompt("Please enter the number of vehicles","1 or 2");
+        if (input =="1")
+        {
+            numFlyVehicles = 1;
+        } else if(input =="2") {
+            numFlyVehicles = 2;
+        } else {
+            alert("You can only enter 1 or 2!");
+            return;
+        }
+        //alert("Please wait for planning the route...");
+        connectToServer_sentpoints();
+    }
+
+    // show the optimal route from server
+    function showRoute(distance){
+        var path1, path2;
+
+        if(numFlyVehicles == 2) {
+            path1 = path[0];
+            path2 = path[1];
+            path = path1;
+        }
+
+        var route = [];
+        route.push(startPoint);  // add to the first
+        for(var i=0; i<path.length;i++) {
+            var id = path[i];
+            if(id < positions.length)
+                route.push(new AMap.LngLat(positions[id].lng, positions[id].lat));
+            else {
+                alert("A route is wrong");
+                return;
+            }
+        }
+        route.push(startPoint);   // add to the last
+
+        polyline = new AMap.Polyline({
+            path: route,
+            borderWeight: 5, // Line width
+            strokeColor: 'blue',
+            lineJoin: 'round'
+        })
+        polyline.setMap(map);
+        map.setFitView([ polyline ]);
+
+        if(numFlyVehicles == 2) {
+            path = path2;
+
+            var route = [];
+            route.push(startPoint);  // add to the first
+            for(var i=0; i<path.length;i++) {
+                var id = path[i];
+                if(id < positions.length)
+                    route.push(new AMap.LngLat(positions[id].lng, positions[id].lat));
+                else {
+                    alert("A route is wrong!");
+                    return;
+                }
+            }
+            route.push(startPoint);   // add to the last
+            polyline2 = new AMap.Polyline({
+                path: route,
+                borderWeight: 5, // Line width
+                strokeColor: 'red',
+                lineJoin: 'round'
+            })
+            polyline2.setMap(map);
+            map.setFitView([ polyline2 ]);
+            path = [path1,path2];
+
+            var text = 'Sum of distance: ['+ distance +'] (Two vehicles) ';
+            document.querySelector("#text").innerText = text;
+        }
+        else {
+            var text = 'Sum of distance: ['+ distance +'] (One vehicle) ';
+            document.querySelector("#text").innerText = text;
+        }
+    }
+
+    //acknowledgement: https://www.cnblogs.com/cryRoom/p/8371207.html
+    function connectToServer_sentpoints() {
+        var json_numOfVehicle =JSON.stringify(numFlyVehicles);
+        var json = JSON.stringify(positions); // Convert objects to JSON format data
+        var xhr = new XMLHttpRequest;
+        xhr.open('post', '../server/php/main.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("points=" + json + "&numOfVehicle=" + json_numOfVehicle);
+        xhr.onreadystatechange = function() {
+             if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status ==304))  // response complete
+                //alert("The server is calculating the routes...");
+                log.success("Please wait for seconds to calculate the route...");
+        }
+        connectToServer_getRoutes();
+    }
+
+    function connectToServer_getCurrent() {
+        //log.success("the curent!");
+        var xhr = new XMLHttpRequest;
+        xhr.open("get",'../server/php/send_currentpoint.php',true);
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status ==304)) { // response complete
+                //alert(xhr.responseText);
+                var current_position = JSON.parse(xhr.responseText, true);
+                var current_position = new AMap.LngLat(current_position[0], current_position[1]);  // the start point of vehicles
+
+                if(current_marker != null) {
+                    map.remove(current_marker);
+                }
+
+                current_marker = new AMap.Marker({
+                        map: map,
+                        icon: 'aircraft.png',
+                        offset: new AMap.Pixel(-30, -40),
+                        position: current_position
+                });
+                current_marker.setMap(map);
+                //map.remove(current_marker);
+            }
+            else if(xhr.status == 404){
+                //log.success("Can't get the current position! Please check.");
+            }
+        };
+    }
+
+    function connectToServer_getRoutes() {
+        var xhr = new XMLHttpRequest;
+        xhr.open("get",'../server/php/main.php',true);   // ../main.php
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status ==304)) { // response complete
+                alert(xhr.responseText);
+                var json = JSON.parse(xhr.responseText);
+                path = json["route"];
+                // alert(path[0][1]);
+                log.success("Computation has finished!");
+                var distance = json["distance"];
+                showRoute(distance);
+            }
+            else if(xhr.status == 404){
+                log.success("Can't get the routes! Please check.");
+            }
+        };
+    }
+
+    function disp_confirm() {
+        if(path.length == 0 && positions.length == 0) {
+            alert("Please select points!");
+            //return;
+        } else if(path.length == 0) {
+            alert("Please click 'Submit' to generate a route ");
+            //return;
+        } else {
+            var r = confirm("Do you want it to fly now?")
+            if (r == true) {
+                // do ...
+                window.open("../control_website/index.html#flight_control"); // the control mode
+            }
+        }
+    }
+
+    function setFitView() {
+        if(markers.length == 0)
+            map.setFitView(start_marker);
+        else 
+            map.setFitView(markers);
+    }
+
+    function ChangeLang() {
+        if(map.getLang() == "zh_cn")
+            map.setLang('zh_en');  // chinese and english
+        else
+            map.setLang('zh_cn');  // only chinese
+    }
+
+    // Binding event to button
+    document.getElementById("clickOn").onclick = clickOn;
+    document.getElementById("clickSubmit").onclick = submitRoute;
+    document.getElementById("removeMarkersGroup").onclick = removeAllMarkers;
+    document.getElementById("removeLastMarker").onclick = removeLastMarker;
+    document.getElementById("clickFly").onclick = disp_confirm;  
+    document.getElementById("clickFit").onclick = setFitView;
+    document.getElementById("clickLang").onclick = ChangeLang;
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+/*
+
+Filename: component.css
+
+This front-end file is prepared by Team 2018-10 of COMP 2043.GRP. University of Nottingham, Ningbo, China.
+The supervisor of Team-10 is prof. Ruibin BAI.
+The developer group consists six people, Runyu ZHANG, Qichen ZHANG, Yinglun LI, Huixing ZHANG, Zeyu ZHANG, and Yundan WANG.
+The project is No.14 UAV Patrol System.
+
+REFERENCE:
+
+[1] Titile: Free Templates of Websites 
+    Author: CSSMoban (Templates Home)
+    Date: 2018
+	 Code Version: 1.0
+    License: MIT
+	 Availability: http://www.cssmoban.com (accessed: Mar 1, 2019)
+
+[2] Title: Websites Templates
+    Author: Bootstrap
+    Date: 2018
+    Code Version: 4.0.0
+    License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    Availability: https://github.com/twbs/bootstrap (accessed: Mar 7, 2019)
+
+*/
+
+/* Header */
+.large-header {
+	position: relative;
+	width: 100%;
+	background: #333;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+
+.demo-1 .large-header {
+	background-image: url('../img/demo-1-bg.jpg');
+}
+.logo_box{
+	width: 400px;
+	height: 500px;
+	padding: 35px;
+	color: #545454;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin-left: -200px;
+	margin-top: -250px;
+}
+.logo_box h3{
+	text-align: center;
+	height: 20px;
+	font: 20px MyriadPro-Regular,Helvetica,Tahoma,Arial,"Microsoft jhengHei",sans-serif;
+	color: #545454;
+	height: 20px;
+	line-height: 20px;
+	padding:0 0 35px 0;
+}
+.forms{
+	width: 280px;
+	height: 485px;
+}
+.logon_inof{
+	width: 100%;
+	min-height: 450px;
+	padding-top: 35px;
+	position: relative;
+}
+.input_outer{
+	height: 46px;
+	padding: 0 5px;
+	margin-bottom: 30px;
+	border-radius: 50px;
+	position: relative;
+	border: #F0F0F0 2px solid !important;
+}
+.u_user{
+	width: 25px;
+	height: 25px;
+	background: url(../img/login_ico.png);
+	background-position:  -125px 0;
+	position: absolute;
+	color: #545454;
+	margin: 10px 13px;
+}
+.us_uer{
+	width: 25px;
+	height: 25px;
+	background-image: url(../img/login_ico.png);
+	background-position: -125px -34px;
+	position: absolute;
+	color: #545454;
+	margin: 10px 13px;
+}
+.l-login{
+	position: absolute;
+	z-index: 1;
+	left: 50px;
+	top: 0;
+	height: 46px;
+	font: 14px MyriadPro-Regular,Helvetica,Tahoma,Arial,"Microsoft jhengHei";
+	line-height: 46px;
+}
+.text{
+	width: 220px;
+	height: 46px;
+	outline: none;
+	display: inline-block;
+	font: 14px MyriadPro-Regular,Helvetica,Tahoma,Arial,"Microsoft jhengHei";
+	margin-left: 50px;
+	border: none;
+	color: #545454;
+	background: none;
+	line-height: 46px;
+}
+/*///*/
+.mb2{
+	margin-bottom: 20px
+}
+.mb2 a{
+	text-decoration: none;
+	outline: none;
+}
+.submit {
+	padding: 15px;
+	margin-top: 20px;
+	display: block;
+}
+.act-but{
+	line-height: 20px;
+	text-align: center;
+	font-size: 20px;
+	border-radius: 50px;
+	background: #e7a15f;
+}

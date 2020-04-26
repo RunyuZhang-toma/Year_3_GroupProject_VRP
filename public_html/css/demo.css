@@ -1,0 +1,62 @@
+/*
+
+Filename: demo.css
+
+This front-end file is prepared by Team 2018-10 of COMP 2043.GRP. University of Nottingham, Ningbo, China.
+The supervisor of Team-10 is prof. Ruibin BAI.
+The developer group consists six people, Runyu ZHANG, Qichen ZHANG, Yinglun LI, Huixing ZHANG, Zeyu ZHANG, and Yundan WANG.
+The project is No.14 UAV Patrol System.
+
+REFERENCE:
+
+[1] Titile: Free Templates of Websites 
+    Author: CSSMoban (Templates Home)
+    Date: 2018
+	 Code Version: 1.0
+    License: MIT
+	 Availability: http://www.cssmoban.com (accessed: Mar 1, 2019)
+
+[2] Title: Websites Templates
+    Author: Bootstrap
+    Date: 2018
+    Code Version: 4.0.0
+    License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    Availability: https://github.com/twbs/bootstrap (accessed: Mar 7, 2019)
+
+*/
+
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	background: #fff;
+	color: #383a3c;
+	font-weight: 400;
+	font-size: 1em;
+	line-height: 1.25;
+	font-family: "Myriad Pro",/*'Raleway', Calibri, Arial, sans-serif*/;
+}
+
+a, button {
+	outline: none;
+}
+
+a {
+	color: #566473;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: #34495e;
+}
+
+section {
+	padding: 1em;
+	text-align: center;
+}
+
+p.ref {
+	text-align: center;
+	padding: 2em 1em;
+}

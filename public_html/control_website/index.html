@@ -1,0 +1,1304 @@
+<!-- 
+
+Filename: index.html
+
+This front-end file is prepared by Team 2018-10 of COMP 2043.GRP. University of Nottingham, Ningbo, China.
+The supervisor of Team-10 is prof. Ruibin BAI.
+The developer group consists six people, Runyu ZHANG, Qichen ZHANG, Yinglun LI, Huixing ZHANG, Zeyu ZHANG, and Yundan WANG.
+The project is No.14 UAV Patrol System.
+
+REFERENCE:
+
+[1] Titile: Free Templates of Websites 
+    Author: CSSMoban (Templates Home)
+    Date: 2018
+	 Code Version: 1.0
+    License: MIT
+	 Availability: http://www.cssmoban.com (accessed: Mar 1, 2019)
+
+[2] Title: Websites Templates
+    Author: Bootstrap
+    Date: 2018
+    Code Version: 4.0.0
+    License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    Availability: https://github.com/twbs/bootstrap (accessed: Mar 7, 2019)
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Dashboard - iUAV Control System</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+	<link rel="stylesheet" href="assets/css/ready.css">
+	<link rel="stylesheet" href="assets/css/demo.css">
+
+
+	<script>
+
+		function reloadPage(){
+			location.reload()
+		}
+
+		var flight1speed = 0.0;
+      var flight1height = 0.0;
+      var flight1power = 0;
+      var flight1lng = 0.0;
+      var flight1lat = 0.0;
+
+		var flight2speed = 0.0;
+		var flight2height = 0.0;
+      var flight2power = 0;
+      var flight2lng = 0.0;
+      var flight2lat = 0.0;
+
+      function incTest()
+      {
+      	flight1speed += 1;
+      	flight2speed += 2;
+      }
+		// setInterval(function() {incTest()},1000);
+
+      function transferJson(obj)
+      {
+         flight1speed = obj.f1s;
+         flight1height = obj.f1h;
+         flight1power = obj.f1p;
+         flight1lng = obj.f1lng;
+         flight1lat = obj.f1lat;
+
+         flight2speed = obj.f2s;
+         flight2height = obj.f2h;
+         flight2power = obj.f2p;
+         flight2lng = obj.f2lng;
+         flight2lat = obj.f2lat;
+      }
+      // setInterval(function() {transferJson()},1000);
+
+      function getFlightData()
+      {
+         var request = null;
+
+         try
+         {
+            request = new XMLHttpRequest(); // Chrome, Firefox, Opera, Safari
+         }
+         catch(e)
+         {
+            try
+            {
+               request = new ActiveXObject("Msxml2.XMLHTTP");// Internet Explorer IE 6.0+
+            }
+            catch(e)
+            {
+               try
+               {
+                  request = new ActiveXObject("Microsoft.XMLHTTP"); // Internet Explorer IE 5.5+
+               }
+               catch (e)
+               {
+                  alert("your browser not support ajax!");
+               }
+            }
+         }
+
+         request.open("GET","../server/json/flight_data.json?now=" + new Date().getTime(),true);
+         request.send();
+
+         request.onreadystatechange = function()
+         {
+            if (request.readyState == 4 && request.status == 200)
+            {
+               // request succeeded
+               console.log(request.responseText)
+               var listObj = JSON.parse(request.responseText);
+               transferJson(listObj);
+           }
+         }
+      }
+
+		// show current time
+		function mytime()
+		{
+			var a = new Date();
+			var b = a.toLocaleTimeString();
+			// var c = a.toLocaleDateString();
+			// document.getElementById("time").innerHTML = c+"&nbsp"+b;
+			document.getElementById("time").innerHTML = b;
+		}
+		setInterval(function() {mytime()},1000);
+
+		function timedCount()
+		{
+			document.getElementById('txt').value = c;
+			c = c + 1;
+			t = setTimeout("timedCount()",1000);
+		}
+
+	   function showData()
+	   {
+	     getFlightData();
+
+	      document.getElementById("flight1speed").innerHTML = flight1speed + " km/h";
+	      document.getElementById("flight2speed").innerHTML = flight2speed+ " km/h" ;
+	      document.getElementById("flight1height").innerHTML = flight1height + " m";
+	      document.getElementById("flight2height").innerHTML = flight2height + " m";
+	      document.getElementById("flight1power").innerHTML = flight1power + "%";
+	      document.getElementById("flight2power").innerHTML = flight2power + "%";
+         document.getElementById("flight1lng").innerHTML = "Lng: " + flight1lng;
+         document.getElementById("flight1lat").innerHTML = "Lat: " + flight1lat;
+         document.getElementById("flight2lng").innerHTML = "Lng: " + flight2lng;
+         document.getElementById("flight2lat").innerHTML = "Lat: " + flight2lat;
+
+	   }
+	   setInterval(function() {showData()},1000);
+
+	   function setPrograss()
+	   {
+	      var bar1sp = document.getElementById("f1sp");
+	      var total = document.getElementById("total");
+	      bar1sp.style.width = flight1speed + "%";
+
+	      var bar2sp = document.getElementById("f2sp");
+	      var total = document.getElementById("total");
+	      bar2sp.style.width = flight2speed + "%";
+
+         var bar1h = document.getElementById("f1ht");
+         var total = document.getElementById("total");
+         bar1h.style.width = flight1height + "%";
+
+         var bar2h = document.getElementById("f2ht");
+         var total = document.getElementById("total");
+         bar2h.style.width = flight2height + "%";
+
+	      // bar1sp.style.width = parseInt(bar1sp.style.width) + 1 + "%";
+	      // total.innerHTML = bar1sp.style.width;
+	      // if(bar1sp.style.width == "100%")
+	      // {
+	      //    window.clearTimeout(timeout);
+	      //    return;
+	      // }
+	      // var timeout= window.setTimeout("setPrograss()",100);
+	   }
+	   setInterval(function() {setPrograss()},1000);
+
+	   window.onload = function()
+	   {
+	       setPrograss();
+	   }
+
+      function submitTakeOff()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 1},
+            success:function (arg)
+            {
+               alert("Take-off command sent successfully.");
+            }
+         })
+      }
+
+      function returnUAV()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 2},
+            success:function (arg)
+            {
+               alert("UAV return command sent successfully.");
+            }
+            // fail: function (arg)
+            // {
+            //    alert("Failed");
+            // }
+         })
+      }
+
+      function speedHigh()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 11},
+            success:function (arg)
+            {
+               alert("High speed setting command sent successfully.");
+            }
+         })
+      }
+
+      function speedMedium()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 12},
+            success:function (arg)
+            {
+               alert("Medium speed setting command sent successfully.");
+            }
+         })
+      }
+
+      function speedLow()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 13},
+            success:function (arg)
+            {
+               alert("Low speed setting command sent successfully.");
+            }
+         })
+      }
+
+      function heightHigh()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 21},
+            success:function (arg)
+            {
+               alert("High cruise altitude setting command sent successfully.");
+            }
+         })
+      }
+
+      function heightMedium()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 22},
+            success:function (arg)
+            {
+               alert("Medium cruise altitude setting command sent successfully.");
+            }
+         })
+      }
+
+      function heightLow()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 23},
+            success:function (arg)
+            {
+               alert("Low cruise altitude setting command sent successfully.");
+            }
+         })
+      }
+
+      function returnOrigin()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 31},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will return to the initial point.");
+            }
+         })
+      }
+
+      function returnFirst()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 32},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will return to the first point in route and hover in position.");
+            }
+         })
+      }
+
+      function returnLast()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 33},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will land onto the last waypoint of its route.");
+            }
+         })
+      }
+
+      function returnDisabled()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 30},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nNo further action will be taken on completion of mission.");
+            }
+         })
+      }
+
+      function scanAtt()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 41},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will adjust camera orientation according to flying direction.");
+            }
+         })
+      }
+
+      function scanFixed()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 42},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will always fix the camera direction (initial take-off heading).");
+            }
+         })
+      }
+
+      function scanAuto()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 43},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nUAV(s) will automatically adjust direction to gain more pictures.");
+            }
+         })
+      }
+
+      function scanRC()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 40},
+            success:function (arg)
+            {
+               alert("Command sent successfully.\nPlease control camera with the remote controller>.");
+            }
+         })
+      }
+
+      function missionPause()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 4},
+            success:function (arg)
+            {
+               alert("Command sent successfully.");
+            }
+         })
+      }
+
+      function missionResume()
+      {
+         $.ajax
+         ({
+            url:'http://10.178.1.63/~Team201810/server/php/backend.php',
+            type:'POST',
+            data:{"submitCmd": 5},
+            success:function (arg)
+            {
+               alert("Command sent successfully.");
+            }
+         })
+      }
+
+
+	</script>
+
+
+
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<div class="logo-header">
+				<a href="index.html" class="logo">
+					iUAV Control System
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+			</div>
+			<nav class="navbar navbar-header navbar-expand-lg">
+				<div class="container-fluid">
+
+					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+						<div class="input-group">
+							<input type="text" placeholder="Search ..." class="form-control">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
+							</div>
+						</div>
+					</form>
+
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+<!-- NOTIFICIATIONS -->
+						<li class="nav-item dropdown hidden-caret">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-bell"></i>
+								<span class="notification">1</span>
+							</a>
+
+							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
+								<li>
+									<div class="dropdown-title">You have 1 new notification</div>
+								</li>
+								<li>
+									<div class="notif-center">
+										 <a href="#">
+											<div class="notif-img"> <img src="assets/img/restricted_logo.jpg" alt="Restricted Area Logo"> </div>
+											<div class="notif-content">
+												<span class="block">
+													Restricted Areas
+												</span>
+												<span class="time">You're under restricted flight area</span>
+											</div>
+										</a>
+									</div>
+								</li>
+								<li>
+									<a class="see-all" href="javascript:void(0);"><font color="#CDC9C9"><strong>See all notifications</strong></font><i class="la la-angle-right"></i> </a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >GRP Team-10</span> </a>
+							<ul class="dropdown-menu dropdown-user">
+								<li>
+									<div class="user-box">
+										<div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+										<div class="u-text">
+											<h4>GRP Team-10</h4>
+											<p class="text-muted">grp.team2018.10@yahoo.com</p><a class="btn btn-rounded btn-danger btn-sm" data-toggle="modal" data-target="#viewProfile"><font color="#CDC9C9">View Profile (locked)</font></a></div>
+										</div>
+									</li>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-user"></i> <font color="#CDC9C9">My Profile</font></a>
+									<!--<a class="dropdown-item" href="#"></i> My Balance</a>-->
+									<a class="dropdown-item"><i class="ti-email"></i> <font color="#CDC9C9">Inbox</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item"><i class="ti-settings"></i> <font color="#CDC9C9">Account Setting</font></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="../index.html"><i class="fa fa-power-off"></i> Logout</a>
+								</ul>
+								<!-- /.dropdown-user -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="sidebar">
+				<div class="scrollbar-inner sidebar-wrapper">
+					<div class="user">
+						<div class="photo">
+							<img src="assets/img/profile.jpg">
+						</div>
+						<div class="info">
+							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									GRP Team-10
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+								<ul class="nav">
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">My Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Edit Profile</font></span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="link-collapse"><font color="#CDC9C9">Settings</font></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav">
+						<li class="nav-item active">
+							<a href="index.html">
+								<i class="la la-dashboard"></i>
+								<p>Dashboard</p>
+								<!-- <span class="badge badge-count">5</span> -->
+							</a>
+						</li>
+<!-- Nav - Routing System -->
+						<li class="nav-item">
+							<a href="routing.html">
+								<i class="la la-map"></i>
+								<p>Routing System</p>
+								<!-- <span class="badge badge-count">50</span> -->
+							</a>
+						</li>
+
+<!-- Nav - Media Library -->
+                  <li class="nav-item">
+                     <a href="media.html">
+                        <i class="la la-film"></i>
+                        <p>Media Library</p>
+                        <!-- <span class="badge badge-count">0</span> -->
+                     </a>
+                  </li>
+
+<!-- NAV - Notifications -->
+						<li class="nav-item">
+							<a href="guidance.html">
+								<i class="la la-graduation-cap"></i>
+								<p>Guidance</p>
+								<!-- <span class="badge badge-success">3</span> -->
+							</a>
+						</li>
+
+<!-- NAV - More Info -->
+						<li class="nav-item">
+							<a href="moreinfo.html">
+								<i class="la la-info-circle"></i>
+								<p>More Info</p>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">Dashboard</h4>
+
+<!-- QUICK CARDS -->
+<!-- Quick CARD - Flight Control -->
+						<div class="row">
+ 							<div class="col-md-3">
+								<div class="card card-stats card-warning">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center"><em class="la la-plane"></em></div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+												  <p class="card-category"><a href="#flight_control"><font color="#FFFFFF"><strong>FLIGHT CONTROL</strong></font></a></p>
+												  <!--<h4 class="card-title"></h4>-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- Quick CARD - Routing System -->
+							<div class="col-md-3">
+								<div class="card card-stats card-success">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-map"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+												  <p class="card-category"><a href="routing.html"><font color="#FFFFFF"><b>ROUTING SYSTEM</b></font></a></p>
+												  <!--<h4 class="card-title"></h4>-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- Quick CARD - Emergency Control -->
+							<div class="col-md-3">
+								<div class="card card-stats card-danger">
+									<div class="card-body col-lg-10">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-wrench"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category"><a href="" data-toggle="modal" data-target="#emeControl"><font color="#FFFFFF"><b>EMERGANCY CONTROL</b></font></a></p>
+													<!--<h4 class="card-title"></h4>-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- Quick CARD - Media Library -->
+							<div class="col-md-3">
+								<div class="card card-stats card-primary">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-film"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category"><a href="media.html"><font color="#FFFFFF"><b>MEDIA LIBRARY</b></font></a></p>
+													<!-- <h4 class="card-title">Media</h4> -->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- CONTENTS -->
+<!-- Content - FLIGHT MISSION -->
+						<!-- <div class="row"> -->
+							<!-- <div class="col-md-4">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Flight Mission</h4>
+										<p class="card-category">Uncompleted</p>
+									</div>
+									<div class="card-body">
+									<div id="task-complete" class="chart-circle mt-4 mb-3"></div>
+									</div>
+									<div class="card-footer">
+										<div class="legend"><i class="la la-circle text-primary"></i> Remaining time: unavailable</div>
+									</div>
+								</div>
+							</div> -->
+
+					<style>
+            		.col-md-12 img{width:100%;height:100%;}
+            		.col-md-9 img{width:100%;height:100%;}
+         		</style>
+
+<!-- Conten - MINI MAP -->
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+									  <h4 class="card-title">Flight Map & Video Monitor</h4>
+									  <p class="card-category">
+										Flight Map will display the real-time positions for connected vehicles and the monitor windows will display the videos from onboard main cameras.</p>
+									</div>
+									<div class="card-body">
+										<img src="assets/img/flight_map_alt.jpg">
+<!-- 										<div class="mapcontainer">
+											<div class="map">
+												<span>Sorry. The real-time flight map is not available now due to a network error. Please check your connection status and try again.</span>
+												<iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.amap.com"></iframe>
+											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						<!-- </div> -->
+
+<!-- Content - FLIGHT DATA -->
+						<div row>
+						<div class="row row-card-no-pd">
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Flight Data</p>
+									  <h4><strong><span id="time"></span></strong></h4>
+									  <a href="" class="btn btn-success btn-full text-left mt-3 mb-3"><i class="la la-check-circle"></i> Connected to server</a>
+									</div>
+									<div class="card-footer">
+										<ul class="nav">
+											<li class="nav-item"><a class="btn btn-default btn-link" data-toggle="modal" data-target="#viewHistoty"><i class="la la-history"></i> History</a></li>
+											<li class="nav-item ml-auto"><a class="btn btn-default btn-link" onclick="reloadPage()"><i class="la la-refresh"></i> Refresh</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="card">
+									<div class="card-body">
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight I Speed</span>
+												<span class="text-muted fw-bold"><span id="flight1speed"></span></span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-primary" role="progressbar" id="f1sp" style="width:0%;"></div>
+											</div>
+                                 <span id="total"></span>
+										</div>
+
+                              <div class="progress-card">
+                                 <div class="d-flex justify-content-between mb-1">
+                                    <span class="text-muted">Flight I Height</span>
+                                    <span class="text-muted fw-bold"><span id="flight1height"></span></span>
+                                 </div>
+                                 <div class="progress mb-2" style="height: 7px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" id="f1ht" style="width:0%;"></div>
+                                 </div>
+                              </div>
+
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Speed</span>
+												<span class="text-muted fw-bold"><span id="flight2speed"></span></span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+												<div class="progress-bar bg-success" role="progressbar" id="f2sp" style="width:0%;"></div>
+											</div>
+										</div>
+
+										<div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+												<span class="text-muted">Flight II Height</span>
+												<span class="text-muted fw-bold"><span id="flight2height"></span></span>
+											</div>
+											<div class="progress mb-2" style="height: 7px;">
+                                    <div class="progress-bar bg-info" role="progressbar" id="f2ht" style="width:0%;"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-2">
+								<div class="card card-stats">
+									<div class="card-body">
+									  <p class="fw-bold mt-1">Battery Status</p>
+									  <div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center icon-warning"><em class="la la-battery-4"></em></div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+												  <p class="card-category">Flight I</p>
+												  <h4 class="card-title"><span id="flight1power"></span></h4>
+												</div>
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-battery-4"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">Flight II</p>
+													<h4 class="card-title"><span id="flight2power"></h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                     <div class="col-md-3">
+                        <div class="card card-stats">
+                           <div class="card-body">
+                             <p class="fw-bold mt-1">GPS Location</p>
+                             <div class="row">
+                                 <div class="col-5">
+                                    <div class="icon-big text-center icon-warning"><em class="la la-map-marker"></em></div>
+                                 </div>
+                                 <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                      <!-- <p class="card-category">Flight I</p> -->
+                                      <h4 class="card-title"><font size="2">
+                                          <span id="flight1lng"></span>
+                                          <br><span id="flight1lat"></span></font>
+                                       </h4>
+                                    </div>
+                                 </div>
+                              </div>
+                              <hr/>
+                              <div class="row">
+                                 <div class="col-5">
+                                    <div class="icon-big text-center">
+                                       <i class="la la-map-marker"></i>
+                                    </div>
+                                 </div>
+                                 <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                       <!-- <p class="card-category">Flight II</p> -->
+                                       <h4 class="card-title"><font size="2">
+                                          <span id="flight2lng"></span>
+                                          <br><span id="flight2lat"></span></font>
+                                       </h4>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+						</div>
+					</div>
+
+<!-- Content - FLIGHT CONTROL -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="flight_control">Flight Control</h4>
+                              <p class="card-category">Control the UAV(s) with the functional buttons.</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-warning" data-toggle="modal" data-target="#takeOff">Take-Off</button>
+
+                                 <button class="btn btn-danger" data-toggle="modal" data-target="#returnUAV">Return</button>
+
+                                 <button class="btn btn-success" data-toggle="modal" data-target="#modalUpdate">Change Routing Points</button>
+
+                                 <button class="btn btn-primary" data-toggle="modal" data-target="#setSpeed">Cruising Speed</button>
+
+                                 <button class="btn btn-info" data-toggle="modal" data-target="#setHeight">Cruising Height</button>
+
+                                 <button class="btn btn-danger" data-toggle="modal" data-target="#setReturnPoint">Return Waypoint</button>
+
+                                 <br>
+
+                                 <button class="btn btn-success" data-toggle="modal" data-target="#scanMode">Camera Scan Mode</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Take-Photo</button>
+
+                                 <button class="btn btn-info" disabled="disabled">Record-Video</button>
+
+                                 <button class="btn btn-default" data-toggle="modal" data-target="#pause">Pause</button>
+
+                                 <button class="btn btn-default" onclick="missionResume()">Resume</button>
+
+                                 <a href="#flight_control"><button class="btn btn-default" onclick="reloadPage()">Refresh</button></a>
+
+                                 <button class="btn btn-link"><a href="guidance.html"> Flight Control Guidance</a></button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+<!-- Content - EMERGENCY CONTROL -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card">
+                           <div class="card-header">
+                              <h4 class="card-title" id="emergency_control">Emergency Control</h4>
+                              <p class="card-category">The emergency control is disabled for safety consideration.<br>Please control the UAV through Dji remote controller in emergency.</p>
+                           </div>
+                           <div class="card-body">
+                              <p class="demo">
+                                 <button class="btn btn-default" disabled="disabled" data-toggle="modal" data-target="#emeControl">Landing</button>
+
+                                 <button class="btn btn-warning" disabled="disabled" data-toggle="modal" data-target="#emeControl">Alarm</button>
+
+                                 <button class="btn btn-danger" disabled="disabled" data-toggle="modal" data-target="#emeControl">Power-Off</button>
+
+                                 <button class="btn btn-success" data-toggle="modal" data-target="#manualControl">Manual</button>
+
+                                 <button class="btn btn-link"><a href="assets/files/dji_safety_guidance.assets/files/dji_safety_guidance.pdf" target="_blank"> Manually Control Instructions </a></button>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+					</div>
+				</div>
+
+
+<!-- FOOTER -->
+				<footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="project_website/index.html">
+										Project Website
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">
+										Help
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#license/#free-item">
+										Licenses
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright ml-auto">
+							Copyright <i class="la la-copyright"></i> 2018-2019 GRP Team2018-10. All rights reserved.</div>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+
+<!-- CHANGE ROUTING POINTS -->
+   <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-warning">
+               <h6 class="modal-title"><i class="la la-shield"></i> Security Warning</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p>For safety consideration, you are <b> NOT allowed </b> to change the routing points while flying.</p>
+               <p>
+               Please go to the <b> routing system </b> page before UAV taking off if you need change the waypoints.</p>
+            </div>
+            <div class="modal-footer">
+               <a href="routing.html"><button type="button" class="btn btn-warning">Goto Routing System</button></a>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- VIEW HISTORY OF FLIGHT DATA -->
+   <div class="modal fade" id="viewHistoty" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-warning">
+               <h6 class="modal-title"><i class="la la-server"></i> Under Development</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>The fligh data history database is under development.</b></p>
+               <p>
+               Please use the mobile control App (e.g. Dji Go) to view flight history.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- TAKE UAV OFF -->
+   <div class="modal fade" id="takeOff" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-danger">
+               <h6 class="modal-title"><i class="la la-upload"></i> Take-off Confirmation</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>WARNING:</b> You are trying to take off. Are you sure you want to <b>take the UAV(s) off</b> and perform the routing mission?</p>
+               <p>
+               Please read the <a href="guidance.html" target="_blank"> guidance and pre-flight checklist </a> carefully before your next operation.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" onclick="submitTakeOff()" data-dismiss="modal">Take-Off</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- RETURN UAV -->
+   <div class="modal fade" id="returnUAV" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-danger">
+               <h6 class="modal-title"><i class="la la-download"></i> Return Confirmation</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>WARNING:</b> You are trying to command the UAV(s) to return. Are you sure you want to <b>return the UAV(s)?</b></p>
+               <p>
+               Breakpoints restore flight function is under development, which will cause the information of unfinished waypoints <b>lost.</b></p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" onclick="returnUAV()" data-dismiss="modal">Return</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- MANUALLY CONTROL -->
+   <div class="modal fade" id="manualControl" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-danger">
+               <h6 class="modal-title"><i class="la la-chain-broken"></i> Manually Control Warning</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>WARNING:</b> You are trying to control the UAV(s) manually. <b>Are you sure to activate the manual mode?</b></p>
+               <p>
+               This mode can only be accessed in emergency condition. Manual control will cause the auto cruise system being unavailable. Please read the <a href="assets/files/dji_safety_guidance.assets/files/dji_safety_guidance.pdf" target="_blank">manually control instructions </a>first.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Manual Mode</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- VIEW ACCOUNT PROFILE -->
+   <div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-unlock"></i> My Profile</h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>Username:</b> GRP Team10
+               <br><b>E-mail:</b> grp.team2018.10@yahoo.com</p>
+               <p>The function of profile change is <b>locked</b> in demonstration mode.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- EMERGENCY CONTROL -->
+   <div class="modal fade" id="emeControl" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-unlock"></i> Emergency Control Unavailable </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p>The emergency control is disabled for safety consideration.</p>
+               <p>Please control the UAV(s) through Dji remote controller in emergency. <a href="assets/files/dji_safety_guidance.pdf" target="_blank">Click here</a> to read the Dji manually control and safety instructions.</p>
+            </div>
+            <div class="modal-footer">
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- CHANGE SPEED -->
+   <div class="modal fade" id="setSpeed" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-dashboard"></i> Set Curising Speed </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p>Please set the curising speed for UAV(s).<br>
+               The default speed setting is HIGH (40km/h).</p>
+               <p>HIGH - 40km/h, <em>quickly detect target areas</em><br>
+                  MEDIUM - 25km/h, <em>balance between speed and quality</em><br>
+                  LOW - 10km/h, <em>accurately scan target areas</em></p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" onclick="speedHigh()" data-dismiss="modal">HIGH</button>
+               <button type="button" class="btn btn-warning" onclick="speedMedium()" data-dismiss="modal">MEDIUM</button>
+               <button type="button" class="btn btn-success" onclick="speedLow()" data-dismiss="modal">LOW</button>
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- SET HEIGHT -->
+    <div class="modal fade" id="setHeight" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-header"></i> Set Curising Height </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p>Please set the curising height level for UAV(s).<br>
+               The default hight setting is HIGH (85-100m).</p>
+               <p>HIGH: 85-100m, <em>quickly detect from heih altitude</em><br>
+                  MEDIUM: 60-75m, <em>balance between scan range and quality</em><br>
+                  LOW: 40-55m, <em>meticulously scan close to the ground</em></p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" onclick="heightHigh()" data-dismiss="modal">HIGH</button>
+               <button type="button" class="btn btn-warning" onclick="heightMedium()" data-dismiss="modal">MEDIUM</button>
+               <button type="button" class="btn btn-success" onclick="heightLow()" data-dismiss="modal">LOW</button>
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- SET RETURN POINTS -->
+    <div class="modal fade" id="setReturnPoint" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-danger">
+               <h6 class="modal-title"><i class="la la-rotate-right"></i> Set Return Waypoint </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>WARNING:</b> You are changing UAV(s)' return waypoint.<br>
+               The default return waypoint setting is ORIGIN.</p>
+               <p>ORIGIN<br><em>return and land to the original point where UAV(s) take off</em><br>
+                  FIRST<br><em>return to the first point in route and hover in position</em><br>
+                  LAST<br><em>land onto the last waypoint of its route</em><br>
+                  DISABLED<br><em>no further action will be taken on completion of mission </em></p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-default" onclick="returnOrigin()" data-dismiss="modal">ORIGIN</button>
+               <button type="button" class="btn btn-default" onclick="returnFirst()" data-dismiss="modal">FIRST</button>
+               <button type="button" class="btn btn-default" onclick="returnLast()" data-dismiss="modal">LAST</button>
+               <button type="button" class="btn btn-default" onclick="returnDisabled()" data-dismiss="modal">DISABLED</button>
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<!-- SET SCAN MODE -->
+   <div class="modal fade" id="scanMode" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-default">
+               <h6 class="modal-title"><i class="la la-crosshairs"></i> Set Camera Scan Mode </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p>Please set the camera scan mode for UAV(s).<br>
+               The default camera scan mode is ATTENDANT.</p>
+               <p>ATTENDANT<br><em>adjust camera orientation according to flying direction</em><br>
+                  FIXED<br><em>always fix the camera direction (initial take-off heading)</em><br>
+                  AUTO (beta)<br><em>automatically adjust direction to gain more pictures</em><br>
+                  RC Control<br><em>control camera with the remote controller</em>></p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" onclick="scanAtt()" data-dismiss="modal">ATTENDANT</button>
+               <button type="button" class="btn btn-warning" onclick="scanFixed()" data-dismiss="modal">FIXED</button>
+               <button type="button" class="btn btn-success" onclick="scanAuto()" data-dismiss="modal">AUTO (beta)</button>
+               <button type="button" class="btn btn-info" onclick="scanRC()" data-dismiss="modal">RC</button>
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- PAUSE -->
+   <div class="modal fade" id="pause" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header bg-warning">
+               <h6 class="modal-title"><i class="la la-pause"></i> Mission Pause Confirmation </h6>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-center">
+               <p><b>WARNING:</b> Are you sure you wanna pause the mission?</p>
+               <p>After the routing mission is suspended, the drone(s) will hover in the air. When the battery power is lower than 20%, the UAV(s) will automatically return to the setted return point.</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" onclick="missionPause()" data-dismiss="modal">Pause</button>
+               <a href="index.html#emergency_control"><button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</body>
+<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script src="assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="assets/js/plugin/maps/initAMap.js"></script>
+<script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="assets/js/ready.min.js"></script>
+<script src="assets/js/demo.js"></script>
+</html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".transferActivity">
+
+
+    <TextView
+        android:id="@+id/text_connection_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_product_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="GRP GO"
+        android:textColor="@android:color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/binding"
+        style="@style/common_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:text="Binding"
+        app:layout_constraintEnd_toEndOf="@+id/text_connection_status"
+        app:layout_constraintStart_toStartOf="@+id/text_connection_status"
+        app:layout_constraintTop_toBottomOf="@+id/text_connection_status" />
+        <!--app:layout_constraintEnd_toEndOf="@+id/connection"-->
+        app:layout_constraintHorizontal_bias="0.0"
+        <!--app:layout_constraintStart_toStartOf="@+id/connection"-->
+
+
+
+    <!--<Button-->
+        <!--android:id="@+id/connection"-->
+        <!--style="@style/common_button"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:text="Connection"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.467"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/binding" />-->
+
+
+    <Button
+        android:id="@+id/UXview"
+        style="@style/common_button"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Flight Interface"
+        app:layout_constraintEnd_toEndOf="@+id/binding"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/binding"
+        app:layout_constraintTop_toBottomOf="@+id/binding" />
+        <!--app:layout_constraintEnd_toEndOf="@+id/camera"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/camera"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/camera"-->
+
+
+
+    <!--<Button-->
+        <!--android:id="@+id/camera"-->
+        <!--style="@style/common_button"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:text="camera"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/connection"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/connection"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/connection" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/mapconnection"-->
+        <!--style="@style/common_button"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:text="mapconnection"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/mapview"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/mapview"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/mapview"-->
+        <!--app:layout_constraintVertical_bias="0.056" />-->
+
+    <Button
+        android:id="@+id/mapview"
+        style="@style/common_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Waypoint Mission"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/UXview"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/UXview"
+        app:layout_constraintTop_toBottomOf="@+id/UXview"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <!--<Button-->
+        <!--android:id="@+id/testphpp"-->
+        <!--style="@style/common_button"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:text="testp"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/UXview"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/UXview"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/mapconnection" />-->
+
+</android.support.constraint.ConstraintLayout>
