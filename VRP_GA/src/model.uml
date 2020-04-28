@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_0ixyMFtFEemqzKm1negKeg" name="model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_0w2qcFtFEemqzKm1negKeg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_m6eFoFuWEemqzKm1negKeg" name="Vehicle">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_oY4kYFuWEemqzKm1negKeg" name="vehicle"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_vJ5lMFuWEemqzKm1negKeg" name="VehicleRoute" visibility="public">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_UE0_4FuXEemqzKm1negKeg">
+          <body>+ VehicleRoute : &lt;Location> {unique}</body>
+        </ownedComment>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CemwEFuXEemqzKm1negKeg" name="Chromosome">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_E5ca0FuXEemqzKm1negKeg" name="distance(fitness)"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IP0gwFuXEemqzKm1negKeg" name="LocationSet"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_F-az8FuZEemqzKm1negKeg" name="mutation"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MllVMFuZEemqzKm1negKeg" name="crossOver"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_RaUPgFuZEemqzKm1negKeg" name="clone"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WEETwFuXEemqzKm1negKeg" name="VRP_GA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_aBP7AFuXEemqzKm1negKeg" name="VehicleNumber"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_OhpOsFuYEemqzKm1negKeg" name="distanceMatrix"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TOuB0FuYEemqzKm1negKeg" name="LocationSet"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_dSa7YFuYEemqzKm1negKeg" name="population" visibility="public"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Z8u8gFuZEemqzKm1negKeg" name="selectMode" visibility="public">
+        <variable xmi:type="uml:Variable" xmi:id="_mrr7YFuZEemqzKm1negKeg" name="popSize"/>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_6ji2oFuZEemqzKm1negKeg" name="orderPop"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_8-UP8FuZEemqzKm1negKeg" name="removePop"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_KZ1Z4FuaEemqzKm1negKeg" name="initial"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_QLWFgFuaEemqzKm1negKeg" name="calFit"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_a62VIFuaEemqzKm1negKeg" name="calculateDistance"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_hDypUFuaEemqzKm1negKeg" name="selection"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6fwYQFuYEemqzKm1negKeg" name="Location">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8Ug6cFuYEemqzKm1negKeg" name="longitude"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-TtLAFuYEemqzKm1negKeg" name="latitude"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_qno68FuWEemqzKm1negKeg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qnpiAFuWEemqzKm1negKeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_UE1m8FuXEemqzKm1negKeg" base_Comment="_UE0_4FuXEemqzKm1negKeg" language="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"/>
+</xmi:XMI>
